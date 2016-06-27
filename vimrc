@@ -1,6 +1,9 @@
 set nocompatible
+
+execute pathogen#infect()
+
 filetype plugin indent on
-set t_Co=256
+"set t_Co=256
 syntax enable
 colorscheme desert
 set number "show line numbers
