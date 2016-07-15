@@ -1,69 +1,84 @@
-set nocompatible
-
+filetype off
 execute pathogen#infect()
-
 filetype plugin indent on
-"set t_Co=256
+
+set nocompatible
+set modelines=0 "security hole?
+
 syntax enable
+set background=dark
+"colorscheme solarized
 colorscheme desert
-set number "show line numbers
-filetype indent on
-set incsearch
-set ignorecase
-set autoindent
-set ruler " show file stats
+" Indentation
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
+set sta
+set autoindent
+set smartindent
+
+" Display
+" Blink screen instead of beeping on error
+set visualbell
+set showcmd
+set showmode
+"set cursorline
+set ruler
+
+"Much of this comes from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+
+" Search
+"use very magic regex - same as perl/python/egrep
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set incsearch
+set showmatch
+set hlsearch "highlight search results
+
+"Use leader space to clear highlighting
+nnoremap <leader><space> :noh<cr>
 
 
-" Blink cursor on error instead of beeping (grr)
-" set visualbell
+nnoremap <tab> % "Make tab match bracket pairs
+vnoremap <tab> %
 
-" Encoding
-" set encoding=utf-8
-"
 " " Whitespace
 " set wrap
 " set textwidth=79
 " set formatoptions=tcqrn1
-" set tabstop=2
-" set shiftwidth=2
-" set softtabstop=2
-" set expandtab
 " set noshiftround
 "
 " " Cursor motion
-" set scrolloff=3
-" set backspace=indent,eol,start
-" set matchpairs+=<:> " use % to jump between pairs
-" runtime! macros/matchit.vim
-"
-" " Move up/down editor lines
-" nnoremap j gj
-" nnoremap k gk
-"
-" " Allow hidden buffers
-" set hidden
-"
-" " Rendering
-" set ttyfast
-"
-" " Status bar
-" set laststatus=2
-"
-" " Last line
-" set showmode
-" set showcmd
+set scrolloff=3
 
-call plug#begin()
+"Hidden chars
 
-Plug 'scrooloose/nerdtree'
+"Disable arrow keys, and make up down make more sense
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+"nnoremap j gj
+"nnoreamp k gk
 
-Plug 'vimwiki/vimwiki'
+"set backspace behaviour to "normal"
+set backspace=indent,eol,start 
 
-Plug 'altercation/vim-colors-solarized'
+" Encoding
+set encoding=utf-8
 
-call plug#end()
+autocmd FocusLost * :wa
 
-syntax enable
-set background=dark
-colorscheme solarized
+" replace currently selected text with default register without yanking it
+vnoremap <leader>p "_dP
+
+" Use relative numbers in normal mode and line numbers in insert mode
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber

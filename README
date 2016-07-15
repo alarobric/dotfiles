@@ -1,0 +1,4 @@
+Basic set of dotfiles as I learn my way through VIM, etc.
+
+Contains an install script that will backup old dotfiles, and symlink to
+these.
