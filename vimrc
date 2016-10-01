@@ -76,9 +76,27 @@ set encoding=utf-8
 
 autocmd FocusLost * :wa
 
-" replace currently selected text with default register without yanking it
-vnoremap <leader>p "_dP
-
 " Use relative numbers in normal mode and line numbers in insert mode
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+
+" Wildmenu
+if has("wildmenu")
+  set wildignore+=*.a,*.o
+  set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+  set wildignore+=.DS_Store,.git,.hg,.svn
+  set wildignore+=*~,*.swp,*.tmp
+  set wildmenu
+  set wildmode=longest,list
+endif
+
+" replace currently selected text with default register without yanking it
+vnoremap <leader>p "_dP
+
+" For visual studio only
+" vsvim already support :cn and :cp for View.NextError and View.PrevError
+noremap <leader>n :vsc Edit.GoToNextLocation<cr>
+noremap <leader>p :vsc Edit.GoToPrevLocation<cr>
+
+" Add comment to member
+nnoremap <leader>d A<tab>//!<<space>
