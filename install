@@ -30,3 +30,9 @@ for file in $files; do
     echo "Creating symlink to $file in home directory."
     ln -s $dir/$file ~/.$file
 done
+
+# special handling for powerline
+if [ -d ~/.config/powerline ]; then
+    mv ~/.config/powerline ~/dotfiles_old/powerline
+fi
+ln -s $dir/powerline ~/.config/powerline
