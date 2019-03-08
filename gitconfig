@@ -3,3 +3,54 @@
 	email = alarobric@gmail.com
 [core]
 	editor = vim
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+[diff "word"]
+    textconv = catdoc
+    binary = true
+[diff "xls"]
+    textconv = xls2csv
+    binary = true
+[diff "ppt"]
+    textconv = catppt
+    binary = true
+[alias]
+    #From https://www.jacobtomlinson.co.uk/quick%20tip/2016/01/18/pretty-git-logs-with-git-lg/
+    lg = !"git lg1"
+    lg1 = !"git lg1-specific --all"
+    lg2 = !"git lg2-specific --all"
+    lg3 = !"git lg3-specific --all"
+
+    lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
+    #Another option from https://salferrarello.com/improve-git-log/
+	lg9 = log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+    #More aliases from https://medium.com/@kenichishibata/my-gitconfig-with-all-the-bells-and-whistles-9479530f12af
+    l1 = log --oneline
+    lp = log -p #Log patch shows file changes as well
+
+    #git diff master.. --stat
+    stats = shortlog -sn
+    lname = log --name-only 
+    l1name = log --name-only --oneline
+
+    #common commands
+    s = status
+    st = status
+
+    co = checkout
+    cob = checkout -b
+    com = checkout master
+    
+[status]
+    submoduleSummary = true
+[difftool "vscode"]
+    tool = "code --wait --diff $LOCAL $REMOTE"
+[merge]
+    keepBackup = false
+    tool = p4merge
+[mergetool]
+    prompt = false
