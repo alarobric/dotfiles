@@ -15,6 +15,10 @@
     textconv = catppt
     binary = true
 [alias]
+    # List aliases
+    alias = !"git config --get-regexp ^alias. | sed -e s/^alias.// -e s/\\ /\\ $(printf \"\\043\")--\\>\\ / | column -t -s $(printf \"\\043\")"
+
+    # Fancy git log formatting
     #From https://www.jacobtomlinson.co.uk/quick%20tip/2016/01/18/pretty-git-logs-with-git-lg/
     lg = !"git lg1"
     lg1 = !"git lg1-specific --all"
@@ -37,13 +41,28 @@
     lname = log --name-only 
     l1name = log --name-only --oneline
 
-    #common commands
+    # Common commands
     s = status
     st = status
 
     co = checkout
     cob = checkout -b
     com = checkout master
+
+    #Azure DevOps 
+	pr = "!f() { exec az repos pr \"$@\"; }; f"
+	repo = "!f() { exec az repos \"$@\"; }; f"
+
+    prl = !git pr list --output table
+    prs = !git pr show --query status --id
+    prc = !git pr create --open --query pullRequestId
+
+    # Open Azure DevOps or Jenkins
+    execurl = "!f() { firefox \"$@\"; } ; f"
+    web = !git execurl $(git config --get remote.azure.url)
+    web2 = !git execurl $(git config --get remote.azure.url)/pullrequest?_a=mine
+    webpr = !git web2
+    jenkins = !git execurl http://10.90.1.160/jenkins/job/V2XS_Feature_Branches
     
 [status]
     submoduleSummary = true
